@@ -8,16 +8,28 @@
 <entry key="err5">Ein Fehler ist aufgetreten, beim Versuch die Datei zu speichern</entry>
 <entry key="exc1">Dezenter Fehler</entry>
 <entry key="exc2">Gravierender Fehler</entry>
-<entry key="maiWinMenSet">Einstellungen</entry>
-<entry key="maiWinMenHel">Hilfe</entry>
-<entry key="maiWinMenSavTex">Text speichern</entry>
-<entry key="maiWinMenSavIma">Bild speichern</entry>
+
+<entry key="maiWinMenExp">Export</entry>
+<entry key="maiWinMenImp">Import</entry>
 <entry key="maiWinMenAbo">Über</entry>
 <entry key="maiWinMenExi">Schließen</entry>
-<entry key="maiWinMenFon">Schriftart</entry>
-<entry key="maiWinMenCol">Farbe</entry>
-<entry key="maiWinMenLan">Sprache</entry>
-<entry key="maiWinMenCip">Chiffren</entry>
+<entry key="maiWinMenShe">Folie</entry>
+<entry key="maiWinMenSheNew">Neue Folie</entry>
+<entry key="maiWinMenSheDel">Folie löschen</entry>
+<entry key="maiWinMenSheRen">Folie umbenennen</entry>
+<entry key="maiWinMenVie">Ansicht</entry>
+<entry key="maiWinMenVieDai">Täglich</entry>
+<entry key="maiWinMenVieWee">Wöchentlich</entry>
+<entry key="maiWinMenVieMon">Monatlich</entry>
+<entry key="maiWinMenVieYea">Jährlich</entry>
+<entry key="maiWinMenSet">Einstellungen</entry>
+<entry key="maiWinMenSetFon">Schriftart</entry>
+<entry key="maiWinMenSetCol">Farbe</entry>
+<entry key="maiWinMenSetLan">Sprache</entry>
+<entry key="maiWinMenHel">Hilfe</entry>
+<entry key="maiWinMenHelEnc">Verschlüsselung</entry>
+<entry key="maiWinMenHelUsa">Nutzung</entry>
+
 <entry key="cryPanFor">Formel:</entry>
 <entry key="cryPanNorTex">Originaler Text:</entry>
 <entry key="cryPanEncTex">Verschlüsselter Text:</entry>

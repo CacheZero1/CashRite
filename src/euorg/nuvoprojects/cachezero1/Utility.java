@@ -124,6 +124,9 @@ public class Utility {
 
     public static final String lightMode = "light";
     public static final String darkMode = "dark";
+
+    public static final String saveOnClose = "soc";
+    public static final String manualSave = "ms";
     // ------- </Uniques> -------
 
     // ------- <Colours> -------

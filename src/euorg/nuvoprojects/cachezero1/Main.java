@@ -11,6 +11,8 @@ public class Main {
     private static LanguageHandler langHandler = new LanguageHandler();
     private static SaveHandler handler = new SaveHandler(".", langHandler);
 
+    private static Boolean s;
+    private static Boolean saveOnExit = true;
     private static Boolean isDarkMode = false;
 
     public static void main(String[] args) {
@@ -28,15 +30,15 @@ public class Main {
         handler.setupSave();
 
         // Check for dark mode
-        try {
-            if (handler.getDataMap().get(Utility.modeName).equals(Utility.darkMode)) {
-                UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
-                isDarkMode = true;
-            }
-        } catch (Exception lookAndFeelException) {}
+        //try {
+        //    if (handler.getDataMap().get(Utility.modeName).equals(Utility.darkMode)) {
+        //        UIManager.setLookAndFeel(UIManager.getCrossPlatformLookAndFeelClassName());
+        //        isDarkMode = true;
+        //    }
+        //} catch (Exception lookAndFeelException) {}
 
         // Main window
-        MainWindow mainWindow = new MainWindow(version, handler, langHandler, isDarkMode);
+        MainWindow mainWindow = new MainWindow(version, handler, langHandler, saveOnExit, isDarkMode);
         mainWindow.setVisible(true);
 
     }    

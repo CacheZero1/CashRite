@@ -8,16 +8,28 @@
 <entry key="err5">Une erreur s'est produit, lors de la tentative d'enregistrer le fichier</entry>
 <entry key="exc1">Exception mineure</entry>
 <entry key="exc2">Exception majeure</entry>
-<entry key="maiWinMenSet">Paramètres</entry>
-<entry key="maiWinMenHel">Aide</entry>
-<entry key="maiWinMenSavTex">Enregistrer le texte</entry>
-<entry key="maiWinMenSavIma">Enregistrer l'image</entry>
+
+<entry key="maiWinMenExp">Exportation</entry>
+<entry key="maiWinMenImp">Importation</entry>
 <entry key="maiWinMenAbo">Environ cet</entry>
 <entry key="maiWinMenExi">Quitter</entry>
-<entry key="maiWinMenFon">Police de caractères</entry>
-<entry key="maiWinMenCol">Couleur</entry>
-<entry key="maiWinMenLan">Langue</entry>
-<entry key="maiWinMenCip">Chiffrements</entry>
+<entry key="maiWinMenShe">Feuille</entry>
+<entry key="maiWinMenSheNew">Nouvelle feuille</entry>
+<entry key="maiWinMenSheDel">Supprimer la feuille</entry>
+<entry key="maiWinMenSheRen">Renommer la feuille</entry>
+<entry key="maiWinMenVie">Vue</entry>
+<entry key="maiWinMenVieDai">Quotidien</entry>
+<entry key="maiWinMenVieWee">Hebdomadaire</entry>
+<entry key="maiWinMenVieMon">Mensuel</entry>
+<entry key="maiWinMenVieYea">Annuel</entry>
+<entry key="maiWinMenSet">Paramètres</entry>
+<entry key="maiWinMenSetFon">Police de caractères</entry>
+<entry key="maiWinMenSetCol">Couleur</entry>
+<entry key="maiWinMenSetLan">Langue</entry>
+<entry key="maiWinMenHel">Aide</entry>
+<entry key="maiWinMenHelEnc">Chiffrement</entry>
+<entry key="maiWinMenHelUsa">Utilisation</entry>
+
 <entry key="cryPanFor">Formule:</entry>
 <entry key="cryPanNorTex">Le text original:</entry>
 <entry key="cryPanEncTex">Le text chiffré:</entry>

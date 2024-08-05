@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -38,6 +39,11 @@ public class MainWindow extends JFrame implements ActionListener {
     private static SaveHandler saveHandler;
     private static LanguageHandler languageHandler;
 
+    private static String infoViewModeToggle;
+    private final String textInfoMode = "stat";
+    private final String imageInfoMode = "graph";
+
+    private static Boolean saveOnExit;
     private static Boolean isDarkMode;
 
     // Components (JMenu)
@@ -55,6 +61,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private JMenuItem renameSheetMenuItem;
     //
     private JMenu viewMenu;
+    private JMenuItem dailyMenuItem;
     private JMenuItem weeklyMenuItem;
     private JMenuItem monthlyMenuItem;
     private JMenuItem yearlyMenuItem;
@@ -63,6 +70,10 @@ public class MainWindow extends JFrame implements ActionListener {
     private JMenuItem fontMenuItem;
     private JMenuItem colourMenuItem;
     private JMenuItem languageMenuItem;
+    //
+    private JMenu helpMenu;
+    private JMenuItem encryptionMenuItem;
+    private JMenuItem usageMenuItem;
 
     // Components (Positioning)
     private JScrollPane sheetSelectionPane;
@@ -76,6 +87,10 @@ public class MainWindow extends JFrame implements ActionListener {
     private JPanel filteringActionPane;
 
     private JScrollPane infoPanel;
+    private JPanel statisticPanel;
+    private JPanel graphPanel;
+    private JPanel reminderPanel;
+    private JButton graphStatisticToggleButton;
 
     // Components (Functional)
     private static List<JButton> sheetSelectionButtonList;
@@ -89,10 +104,12 @@ public class MainWindow extends JFrame implements ActionListener {
     private JLabel filteringActionLabel;
     private JButton findEntryButton;
 
-    
+    private JButton saveButton;
+
+
     
 
-    public MainWindow(String version, SaveHandler handler, LanguageHandler langHandler, Boolean darkMode) {
+    public MainWindow(String version, SaveHandler handler, LanguageHandler langHandler, Boolean exitSave, Boolean darkMode) {
 
         // Globals
         saveHandler = handler;
@@ -104,9 +121,10 @@ public class MainWindow extends JFrame implements ActionListener {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setMinimumSize(new Dimension(900, 600));
-        this.setTitle("Cipherus - (" + version + ")");
+        this.setTitle("CashRite - (" + version + ")");
         this.setLayout(new BorderLayout());
 
+        infoViewModeToggle = textInfoMode;
 
         // Settings with exception chance
         try {
@@ -134,20 +152,68 @@ public class MainWindow extends JFrame implements ActionListener {
     private void createJMenu() {
 
         // Main Menus
-        
+        menuBar = new JMenuBar();
 
-        // Cipherus Menu
+        cashRiteMenu = new JMenu("CashRite");
+        sheetMenu = new JMenu();
+        viewMenu = new JMenu();
+        settingsMenu = new JMenu();
+        helpMenu = new JMenu();
+
+        // CashRite Menu
+        exportMenuItem = new JMenuItem();
+        importMenuItem = new JMenuItem();
+        aboutMenuItem = new JMenuItem();
+        exitMenuItem = new JMenuItem();
         
-        
+        // Sheet Menu
+        newSheetMenuItem = new JMenuItem();
+        deleteSheetMenuItem = new JMenuItem();
+        renameSheetMenuItem = new JMenuItem();
+
+        // View Menu
+        dailyMenuItem = new JMenuItem();
+        weeklyMenuItem = new JMenuItem();
+        monthlyMenuItem = new JMenuItem();
+        yearlyMenuItem = new JMenuItem();
+
         // Settings Menu
-        
+        fontMenuItem = new JMenuItem();
+        colourMenuItem = new JMenuItem();
+        languageMenuItem = new JMenuItem();
 
         // Help
-        
+        encryptionMenuItem = new JMenuItem();
+        usageMenuItem = new JMenuItem();
 
 
         // ActionListeners
-        
+        exportMenuItem.addActionListener(this);
+        importMenuItem.addActionListener(this);
+        aboutMenuItem.addActionListener(this);
+        exitMenuItem.addActionListener(exitAction -> {
+            System.out.println("Saved!"); //TODO: save
+            try {
+                TimeUnit.SECONDS.sleep(1);
+            } catch (InterruptedException e) {}
+            System.exit(0);
+        });
+
+        newSheetMenuItem.addActionListener(this);
+        deleteSheetMenuItem.addActionListener(this);
+        renameSheetMenuItem.addActionListener(this);
+
+        dailyMenuItem.addActionListener(this);
+        weeklyMenuItem.addActionListener(this);
+        monthlyMenuItem.addActionListener(this);
+        yearlyMenuItem.addActionListener(this);
+
+        fontMenuItem.addActionListener(this);
+        colourMenuItem.addActionListener(this);
+        languageMenuItem.addActionListener(this);
+
+        encryptionMenuItem.addActionListener(this);
+        usageMenuItem.addActionListener(this);
 
     }
 
@@ -168,7 +234,35 @@ public class MainWindow extends JFrame implements ActionListener {
     // Add all to JFrame
     private void addGUIComponents() {
 
-        
+        // JMenu
+        cashRiteMenu.add(exportMenuItem);
+        cashRiteMenu.add(importMenuItem);
+        cashRiteMenu.add(aboutMenuItem);
+        cashRiteMenu.add(exitMenuItem);
+
+        sheetMenu.add(newSheetMenuItem);
+        sheetMenu.add(deleteSheetMenuItem);
+        sheetMenu.add(renameSheetMenuItem);
+
+        viewMenu.add(dailyMenuItem);
+        viewMenu.add(weeklyMenuItem);
+        viewMenu.add(monthlyMenuItem);
+        viewMenu.add(yearlyMenuItem);
+
+        settingsMenu.add(fontMenuItem);
+        settingsMenu.add(colourMenuItem);
+        settingsMenu.add(languageMenuItem);
+
+        helpMenu.add(encryptionMenuItem);
+        helpMenu.add(usageMenuItem);
+
+        menuBar.add(cashRiteMenu);
+        menuBar.add(sheetMenu);
+        menuBar.add(viewMenu);
+        menuBar.add(settingsMenu);
+        menuBar.add(helpMenu);
+
+        this.setJMenuBar(menuBar);
 
     }
 

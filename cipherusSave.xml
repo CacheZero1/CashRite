@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+<entry key="subtitleStyle">0</entry>
+<entry key="subtitleFamily">Default</entry>
+<entry key="titleFamily">Default</entry>
+<entry key="inputFamily">Default</entry>
+<entry key="titleSize">20</entry>
+<entry key="mode">light</entry>
+<entry key="selectionStyle">0</entry>
+<entry key="selectionFamily">Default</entry>
+<entry key="inputSize">18</entry>
+<entry key="selectionSize">13</entry>
+<entry key="inputStyle">0</entry>
+<entry key="titleStyle">0</entry>
+<entry key="subtitleSize">20</entry>
+<entry key="lang">en</entry>
+</properties>
