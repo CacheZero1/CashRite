@@ -1,7 +1,11 @@
 package euorg.nuvoprojects.cachezero1;
 
+import java.awt.List;
+import java.util.LinkedHashMap;
+
 import javax.swing.UIManager;
 
+import euorg.nuvoprojects.cachezero1.cryptor.Cryptor;
 import euorg.nuvoprojects.cachezero1.gui.MainWindow;
 import euorg.nuvoprojects.cachezero1.literates.LanguageHandler;
 import euorg.nuvoprojects.cachezero1.literates.SaveHandler;
@@ -11,7 +15,8 @@ public class Main {
     private static LanguageHandler langHandler = new LanguageHandler();
     private static SaveHandler handler = new SaveHandler(".", langHandler);
 
-    private static Boolean s;
+    private static Boolean disclaimerAccepted = false;
+    private static Boolean passwordSet = false;
     private static Boolean saveOnExit = true;
     private static Boolean isDarkMode = false;
 

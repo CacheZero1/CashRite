@@ -1,11 +1,12 @@
 package euorg.nuvoprojects.cachezero1.gui;
 
 import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridBagConstraints;
-import java.awt.GridBagLayout;
+import java.awt.FlowLayout;
+import java.awt.GridLayout;
+import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.KeyEvent;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
@@ -15,7 +16,7 @@ import java.awt.BorderLayout;
 import java.awt.Color;
 
 import javax.imageio.ImageIO;
-import javax.swing.BorderFactory;
+import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,9 +26,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
+import javax.swing.KeyStroke;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.border.LineBorder;
-import javax.swing.plaf.basic.BasicScrollBarUI;
 
 import euorg.nuvoprojects.cachezero1.Utility;
 import euorg.nuvoprojects.cachezero1.literates.LanguageHandler;
@@ -43,6 +45,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private final String textInfoMode = "stat";
     private final String imageInfoMode = "graph";
 
+    private static Boolean changesSaved;
     private static Boolean saveOnExit;
     private static Boolean isDarkMode;
 
@@ -50,6 +53,7 @@ public class MainWindow extends JFrame implements ActionListener {
     private JMenuBar menuBar;
     //
     private JMenu cashRiteMenu;
+    private JMenuItem saveMenuItem;
     private JMenuItem exportMenuItem;
     private JMenuItem importMenuItem;
     private JMenuItem aboutMenuItem;
@@ -76,25 +80,26 @@ public class MainWindow extends JFrame implements ActionListener {
     private JMenuItem usageMenuItem;
 
     // Components (Positioning)
-    private JScrollPane sheetSelectionPane;
+    private JScrollPane sheetSelectionPanel;
     private JPanel leftPanel;
-    private JPanel rightPanel;
 
-    private JScrollPane tablePane;
+    private JScrollPane tablePanel;
+    private JPanel tableRootPanel;
     private JPanel optionPanel;
 
-    private JPanel cellActionPane;
-    private JPanel filteringActionPane;
-
     private JScrollPane infoPanel;
+    private JPanel infoRootPanel;
     private JPanel statisticPanel;
     private JPanel graphPanel;
-    private JPanel reminderPanel;
-    private JButton graphStatisticToggleButton;
+    private JScrollPane reminderPanel;
 
     // Components (Functional)
     private static List<JButton> sheetSelectionButtonList;
+    private static JButton defaultSheetButton;
     private static JTable mainTable;
+
+    private JButton graphStatisticToggleButton;
+    private JTextArea reminderTextArea;
 
     private JLabel cellActionLabel;
     private JButton newEntryButton;
@@ -103,10 +108,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private JLabel filteringActionLabel;
     private JButton findEntryButton;
-
-    private JButton saveButton;
-
-
+    private JTextField filteringArgsTextField;
     
 
     public MainWindow(String version, SaveHandler handler, LanguageHandler langHandler, Boolean exitSave, Boolean darkMode) {
@@ -161,6 +163,8 @@ public class MainWindow extends JFrame implements ActionListener {
         helpMenu = new JMenu();
 
         // CashRite Menu
+        saveMenuItem = new JMenuItem();
+        saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
         exportMenuItem = new JMenuItem();
         importMenuItem = new JMenuItem();
         aboutMenuItem = new JMenuItem();
@@ -188,6 +192,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
 
         // ActionListeners
+        saveMenuItem.addActionListener(this);
         exportMenuItem.addActionListener(this);
         importMenuItem.addActionListener(this);
         aboutMenuItem.addActionListener(this);
@@ -220,6 +225,42 @@ public class MainWindow extends JFrame implements ActionListener {
     // Create positioners
     private void createPositioningComponents() {
 
+        // Sheet selection bar
+        sheetSelectionPanel = new JScrollPane();
+        sheetSelectionPanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        sheetSelectionPanel.setPreferredSize(new Dimension(sheetSelectionPanel.getWidth(), 33));
+
+        // Table & action pane container
+        leftPanel = new JPanel();
+        leftPanel.setLayout(new BorderLayout());
+
+        // Table & table option containers
+        tableRootPanel = new JPanel();
+        tableRootPanel.setBackground(Color.green); // FIXME: remove
+
+        tablePanel = new JScrollPane(tableRootPanel);
+        tablePanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
+        tablePanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+
+        optionPanel = new JPanel();
+        optionPanel.setPreferredSize(new Dimension(optionPanel.getWidth(), 100));
+        optionPanel.setLayout(new GridLayout(2, 4, 10, 10));
+
+        // Info & graph & statistic & reminder containers
+        infoRootPanel = new JPanel();
+        infoRootPanel.setLayout(new BoxLayout(infoRootPanel, BoxLayout.Y_AXIS));
+        infoRootPanel.setBackground(Color.yellow); // FIXME: remove
+
+        infoPanel = new JScrollPane(infoRootPanel);
+        infoPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
+        infoPanel.setPreferredSize(new Dimension(300, infoPanel.getHeight()));
+        
+        statisticPanel = new JPanel();
+
+        graphPanel = new JPanel();
+
+        reminderPanel = new JScrollPane();
+        reminderPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
         
     }
 
@@ -229,12 +270,17 @@ public class MainWindow extends JFrame implements ActionListener {
         // Table
         mainTable = new JTable();
 
+        // Reminder
+        reminderTextArea = new JTextArea();
+        reminderTextArea.setLineWrap(true);
+
     }
 
     // Add all to JFrame
     private void addGUIComponents() {
 
         // JMenu
+        cashRiteMenu.add(saveMenuItem);
         cashRiteMenu.add(exportMenuItem);
         cashRiteMenu.add(importMenuItem);
         cashRiteMenu.add(aboutMenuItem);
@@ -263,6 +309,22 @@ public class MainWindow extends JFrame implements ActionListener {
         menuBar.add(helpMenu);
 
         this.setJMenuBar(menuBar);
+
+        // Left panel & table & table options
+        leftPanel.add(tablePanel);
+        leftPanel.add(optionPanel, BorderLayout.SOUTH);
+
+        // Right panel & info & reminder
+        reminderPanel.setViewportView(reminderTextArea);
+
+        infoRootPanel.add(statisticPanel);
+        infoRootPanel.add(reminderPanel);
+
+        // Add to this
+        this.add(sheetSelectionPanel, BorderLayout.NORTH);
+        this.add(leftPanel);
+        this.add(infoPanel, BorderLayout.EAST);
+        
 
     }
 

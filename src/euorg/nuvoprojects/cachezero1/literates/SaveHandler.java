@@ -4,6 +4,7 @@ import java.awt.Font;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
 import java.util.ArrayList;
@@ -31,7 +32,7 @@ public class SaveHandler {
     // Initiate class
     public SaveHandler(String desiredPath, LanguageHandler langHandler) {
         languageHandler = langHandler;
-        this.savePath = desiredPath + "/cipherusSave.xml";
+        this.savePath = desiredPath + "/CashRite/customization.xml";
         saveFile = new File(savePath);
     }
 
@@ -165,14 +166,23 @@ public class SaveHandler {
     // Initiate process
     public void setupSave() {
 
-        if (!saveFile.exists()) {
+        if (!saveFile.exists() || !saveFile.getParentFile().exists()) {
 
-            // Create File
-            try {
-                saveFile.createNewFile();
-            } catch (Exception e) {
-                HashMap<String, String> langMap = languageHandler.getLangMap(this.getDataMapLang());
-                new ErrorPane(false, new ArrayList<String>(Arrays.asList(langMap.get(Utility.majErr), langMap.get(Utility.wriFilErr), langMap.get(Utility.accept))));
+            if (!saveFile.getParentFile().exists()) {
+                if (!saveFile.getParentFile().mkdirs()) {
+                    HashMap<String, String> langMap = languageHandler.getLangMap(this.getDataMapLang());
+                    new ErrorPane(false, new ArrayList<String>(Arrays.asList(langMap.get(Utility.majErr), langMap.get(Utility.wriFilErr), langMap.get(Utility.accept))));
+                }
+            }
+
+            if (!saveFile.exists()) {
+                // Create File
+                try {
+                    saveFile.createNewFile();
+                } catch (Exception e) {
+                    HashMap<String, String> langMap = languageHandler.getLangMap(this.getDataMapLang());
+                    new ErrorPane(false, new ArrayList<String>(Arrays.asList(langMap.get(Utility.majErr), langMap.get(Utility.wriFilErr), langMap.get(Utility.accept))));
+                }
             }
 
             // Create default mappings
