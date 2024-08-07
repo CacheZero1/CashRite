@@ -65,4 +65,4 @@ Here's what you can expect from CashRite:
 
 ## Disclaimer
 
-Please read following [Disclaimer](https://github.com/CacheZero1/Cipherus/blob/master/DISCLAIMER.md)!
+Please read following [Disclaimer](https://github.com/CacheZero1/CashRite/blob/master/DISCLAIMER.md)!
