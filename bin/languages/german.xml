@@ -9,6 +9,8 @@
 <entry key="exc1">Dezenter Fehler</entry>
 <entry key="exc2">Gravierender Fehler</entry>
 
+<entry key="maiWinMenSav">Speichern</entry>
+<entry key="maiWinMenExcRat">Wechselkurse</entry>
 <entry key="maiWinMenExp">Export</entry>
 <entry key="maiWinMenImp">Import</entry>
 <entry key="maiWinMenAbo">Über</entry>
@@ -29,6 +31,16 @@
 <entry key="maiWinMenHel">Hilfe</entry>
 <entry key="maiWinMenHelEnc">Verschlüsselung</entry>
 <entry key="maiWinMenHelUsa">Nutzung</entry>
+
+<entry key="maiWinOptEnt">Eintrag:</entry>
+<entry key="maiWinOptEntNew">Neuer Eintrag</entry>
+<entry key="maiWinOptEntDel">Eintrag löschen</entry>
+<entry key="maiWinOptEntEdi">Eintrag bearbeiten</entry>
+<entry key="maiWinOptFil">Filter:</entry>
+<entry key="maiWinOptFilBox0">Datum</entry>
+<entry key="maiWinOptFilBox1">Wert</entry>
+<entry key="maiWinOptFilBox2">String</entry>
+<entry key="maiWinOptFilSea">Filtrieren</entry>
 
 <entry key="cryPanFor">Formel:</entry>
 <entry key="cryPanNorTex">Originaler Text:</entry>

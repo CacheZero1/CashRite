@@ -41,7 +41,7 @@ Here's what you can expect from CashRite:
 * Modern GUI
 * Built with Java
 * Reminder area
-* Exchange rate calculator*
+* Exchange rate calculator (from/to EUR)*
 * Different account tables*
 * Overview & statistics*
 * Encryption using Cryptor*

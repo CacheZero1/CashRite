@@ -9,7 +9,7 @@ public class Utility {
     // Valid characters
     public static final List<String> validCharsList = Arrays.asList(
     "A","B","C","D","E","F","G","H","I","J","K","L","M","N","O","P","Q","R","S","T","U","V","W","X","Y","Z","ß",
-    " ", ",", ".", "'", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "§", "%", "&", "/", "(", ")", "=", "?", "*", "+", "#", ";", "$","\n", "\"", "\t", "|",
+    " ", ",", ".", "'", "1", "2", "3", "4", "5", "6", "7", "8", "9", "0", "!", "§", "%", "&", "/", "(", ")", "=", "?", "*", "+", "#", ";", "$","\n", "\t", "|",
     "&#8352", "&#8353", "&#8354", "&#8355", "&#8356", "&#8357", "&#8358", "&#8359", "&#8360", "&#8361", "&#8362", "&#8363", "&#8364", "&#8365", "&#8366", "&#8367", "&#8368", "&#8369", "&#8370", "&#8371", "&#8372", "&#8373", "&#8374", "&#8375", "&#8376", "&#8377", "&#8378", "&#8379", "&#8380", "&#8381", "&#8382", "&#8383"
     );
 
@@ -55,17 +55,40 @@ public class Utility {
     public static final String minErr = "exc1";
     public static final String majErr = "exc2";
 
-    // Main Window
-    public static final String menSet = "maiWinMenSet";
-    public static final String menHel = "maiWinMenHel";
-    public static final String menSavTex = "maiWinMenSavTex";
-    public static final String menSavIma = "maiWinMenSavIma";
-    public static final String menAbo = "maiWinMenAbo";
-    public static final String menExi = "maiWinMenExi";
-    public static final String menFon = "maiWinMenFon";
-    public static final String menCol = "maiWinMenCol";
-    public static final String menLan = "maiWinMenLan";
-    public static final String menCip = "maiWinMenCip";
+    // Main Window Menu
+    public static final String menSave = "maiWinMenSav";
+    public static final String menExchangeRates = "maiWinMenExcRat";
+    public static final String menExport = "maiWinMenExp";
+    public static final String menImport = "maiWinMenImp";
+    public static final String menAbout = "maiWinMenAbo";
+    public static final String menExit = "maiWinMenExi";
+    public static final String menSheet = "maiWinMenShe";
+    public static final String menNewSheet = "maiWinMenSheNew";
+    public static final String menDeleteSheet = "maiWinMenSheDel";
+    public static final String menRenameSheet = "maiWinMenSheRen";
+    public static final String menView = "maiWinMenVie";
+    public static final String menDaily = "maiWinMenVieDai";
+    public static final String menWeekly = "maiWinMenVieWee";
+    public static final String menMonthly = "maiWinMenVieMon";
+    public static final String menYearly = "maiWinMenVieYea";
+    public static final String menSettings = "maiWinMenSet";
+    public static final String menFont = "maiWinMenSetFon";
+    public static final String menColour = "maiWinMenSetCol";
+    public static final String menLanguage = "maiWinMenSetLan";
+    public static final String menHelp = "maiWinMenHel";
+    public static final String menEncryption = "maiWinMenHelEnc";
+    public static final String menUsage = "maiWinMenHelUsa";
+
+    // Main Window Options
+    public static final String optEntry = "maiWinOptEnt";
+    public static final String optNewEntry = "maiWinOptEntNew";
+    public static final String optDeleteEntry = "maiWinOptEntDel";
+    public static final String optEditEntry = "maiWinOptEntEdi";
+    public static final String optFilter = "maiWinOptFil";
+    public static final String optFilterboxDate = "maiWinOptFilBox0";
+    public static final String optFilterboxValue = "maiWinOptFilBox1";
+    public static final String optFilterboxString = "maiWinOptFilBox2";
+    public static final String optFilterSearch = "maiWinOptFilSea";
 
     // Cryptor Panel
     public static final String cryPanFor = "cryPanFor";

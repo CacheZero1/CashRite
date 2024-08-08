@@ -1,7 +1,6 @@
 package euorg.nuvoprojects.cachezero1.gui;
 
 import java.awt.Dimension;
-import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
@@ -18,6 +17,7 @@ import java.awt.Color;
 import javax.imageio.ImageIO;
 import javax.swing.BoxLayout;
 import javax.swing.JButton;
+import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JMenu;
@@ -54,6 +54,7 @@ public class MainWindow extends JFrame implements ActionListener {
     //
     private JMenu cashRiteMenu;
     private JMenuItem saveMenuItem;
+    private JMenuItem convertMenuItem;
     private JMenuItem exportMenuItem;
     private JMenuItem importMenuItem;
     private JMenuItem aboutMenuItem;
@@ -108,6 +109,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
     private JLabel filteringActionLabel;
     private JButton findEntryButton;
+    private JComboBox<String> filteringArgBox;
     private JTextField filteringArgsTextField;
     
 
@@ -117,6 +119,7 @@ public class MainWindow extends JFrame implements ActionListener {
         saveHandler = handler;
         languageHandler = langHandler;
 
+        saveOnExit = exitSave;
         isDarkMode = darkMode;
 
         // Normal settings
@@ -165,10 +168,12 @@ public class MainWindow extends JFrame implements ActionListener {
         // CashRite Menu
         saveMenuItem = new JMenuItem();
         saveMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_S, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
+        convertMenuItem = new JMenuItem();
         exportMenuItem = new JMenuItem();
         importMenuItem = new JMenuItem();
         aboutMenuItem = new JMenuItem();
         exitMenuItem = new JMenuItem();
+        exitMenuItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_Q, Toolkit.getDefaultToolkit().getMenuShortcutKeyMaskEx()));
         
         // Sheet Menu
         newSheetMenuItem = new JMenuItem();
@@ -193,6 +198,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         // ActionListeners
         saveMenuItem.addActionListener(this);
+        convertMenuItem.addActionListener(this);
         exportMenuItem.addActionListener(this);
         importMenuItem.addActionListener(this);
         aboutMenuItem.addActionListener(this);
@@ -236,7 +242,6 @@ public class MainWindow extends JFrame implements ActionListener {
 
         // Table & table option containers
         tableRootPanel = new JPanel();
-        tableRootPanel.setBackground(Color.green); // FIXME: remove
 
         tablePanel = new JScrollPane(tableRootPanel);
         tablePanel.setHorizontalScrollBarPolicy(ScrollPaneConstants.HORIZONTAL_SCROLLBAR_AS_NEEDED);
@@ -249,7 +254,6 @@ public class MainWindow extends JFrame implements ActionListener {
         // Info & graph & statistic & reminder containers
         infoRootPanel = new JPanel();
         infoRootPanel.setLayout(new BoxLayout(infoRootPanel, BoxLayout.Y_AXIS));
-        infoRootPanel.setBackground(Color.yellow); // FIXME: remove
 
         infoPanel = new JScrollPane(infoRootPanel);
         infoPanel.setVerticalScrollBarPolicy(ScrollPaneConstants.VERTICAL_SCROLLBAR_AS_NEEDED);
@@ -270,6 +274,38 @@ public class MainWindow extends JFrame implements ActionListener {
         // Table
         mainTable = new JTable();
 
+        // Option labels
+        cellActionLabel = new JLabel();
+        cellActionLabel.setFocusable(false);
+        cellActionLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        filteringActionLabel = new JLabel();
+        filteringActionLabel.setFocusable(false);
+        filteringActionLabel.setHorizontalAlignment(JLabel.CENTER);
+
+        // Option buttons & textfield & combobox
+        newEntryButton = new JButton();
+        newEntryButton.setFocusable(false);
+        newEntryButton.addActionListener(this);
+
+        deleteEntryButton = new JButton();
+        deleteEntryButton.setFocusable(false);
+        deleteEntryButton.addActionListener(this);
+
+        editEntryButton = new JButton();
+        editEntryButton.setFocusable(false);
+        editEntryButton.addActionListener(this);
+
+        findEntryButton = new JButton();
+        findEntryButton.setFocusable(false);
+        findEntryButton.addActionListener(this);
+
+        filteringArgBox = new JComboBox<>();
+        filteringArgBox.setFocusable(false);
+        filteringArgBox.setEditable(false);
+
+        filteringArgsTextField = new JTextField();
+
         // Reminder
         reminderTextArea = new JTextArea();
         reminderTextArea.setLineWrap(true);
@@ -281,6 +317,7 @@ public class MainWindow extends JFrame implements ActionListener {
 
         // JMenu
         cashRiteMenu.add(saveMenuItem);
+        cashRiteMenu.add(convertMenuItem);
         cashRiteMenu.add(exportMenuItem);
         cashRiteMenu.add(importMenuItem);
         cashRiteMenu.add(aboutMenuItem);
@@ -311,6 +348,16 @@ public class MainWindow extends JFrame implements ActionListener {
         this.setJMenuBar(menuBar);
 
         // Left panel & table & table options
+        optionPanel.add(cellActionLabel);
+        optionPanel.add(newEntryButton);
+        optionPanel.add(deleteEntryButton);
+        optionPanel.add(editEntryButton);
+
+        optionPanel.add(filteringActionLabel);
+        optionPanel.add(filteringArgBox);
+        optionPanel.add(filteringArgsTextField);
+        optionPanel.add(findEntryButton);
+
         leftPanel.add(tablePanel);
         leftPanel.add(optionPanel, BorderLayout.SOUTH);
 
@@ -334,7 +381,44 @@ public class MainWindow extends JFrame implements ActionListener {
         HashMap<String, String> textMap = languageHandler.getLangMap(saveHandler.getDataMapLang());
 
         // Menu
-        
+        saveMenuItem.setText(textMap.get(Utility.menSave));
+        convertMenuItem.setText(textMap.get(Utility.menExchangeRates));
+        exportMenuItem.setText(textMap.get(Utility.menExport));
+        importMenuItem.setText(textMap.get(Utility.menImport));
+        aboutMenuItem.setText(textMap.get(Utility.menAbout));
+        exitMenuItem.setText(textMap.get(Utility.menExit));
+
+        sheetMenu.setText(textMap.get(Utility.menSheet));
+        newSheetMenuItem.setText(textMap.get(Utility.menNewSheet));
+        deleteSheetMenuItem.setText(textMap.get(Utility.menDeleteSheet));
+        renameSheetMenuItem.setText(textMap.get(Utility.menRenameSheet));
+
+        viewMenu.setText(textMap.get(Utility.menView));
+        dailyMenuItem.setText(textMap.get(Utility.menDaily));
+        weeklyMenuItem.setText(textMap.get(Utility.menWeekly));
+        monthlyMenuItem.setText(textMap.get(Utility.menMonthly));
+        yearlyMenuItem.setText(textMap.get(Utility.menYearly));
+
+        settingsMenu.setText(textMap.get(Utility.menSettings));
+        fontMenuItem.setText(textMap.get(Utility.menFont));
+        colourMenuItem.setText(textMap.get(Utility.menColour));
+        languageMenuItem.setText(textMap.get(Utility.menLanguage));
+
+        helpMenu.setText(textMap.get(Utility.menHelp));
+        encryptionMenuItem.setText(textMap.get(Utility.menEncryption));
+        usageMenuItem.setText(textMap.get(Utility.menUsage));
+
+        // Options
+        cellActionLabel.setText(textMap.get(Utility.optEntry));
+        newEntryButton.setText(textMap.get(Utility.optNewEntry));
+        deleteEntryButton.setText(textMap.get(Utility.optDeleteEntry));
+        editEntryButton.setText(textMap.get(Utility.optEditEntry));
+
+        filteringActionLabel.setText(textMap.get(Utility.optFilter));
+        filteringArgBox.addItem(textMap.get(Utility.optFilterboxDate));
+        filteringArgBox.addItem(textMap.get(Utility.optFilterboxValue));
+        filteringArgBox.addItem(textMap.get(Utility.optFilterboxString));
+        findEntryButton.setText(textMap.get(Utility.optFilterSearch));
 
     }
 

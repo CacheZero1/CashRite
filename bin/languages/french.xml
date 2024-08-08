@@ -9,6 +9,8 @@
 <entry key="exc1">Exception mineure</entry>
 <entry key="exc2">Exception majeure</entry>
 
+<entry key="maiWinMenSav">Enregistrer</entry>
+<entry key="maiWinMenExcRat">Taux de change</entry>
 <entry key="maiWinMenExp">Exportation</entry>
 <entry key="maiWinMenImp">Importation</entry>
 <entry key="maiWinMenAbo">Environ cet</entry>
@@ -29,6 +31,16 @@
 <entry key="maiWinMenHel">Aide</entry>
 <entry key="maiWinMenHelEnc">Chiffrement</entry>
 <entry key="maiWinMenHelUsa">Utilisation</entry>
+
+<entry key="maiWinOptEnt">Entrée:</entry>
+<entry key="maiWinOptEntNew">Nouvelle entrée</entry>
+<entry key="maiWinOptEntDel">Supprimer l'entrée</entry>
+<entry key="maiWinOptEntEdi">Modifier l'entrée</entry>
+<entry key="maiWinOptFil">Filtre:</entry>
+<entry key="maiWinOptFilBox0">Date</entry>
+<entry key="maiWinOptFilBox1">Valeur</entry>
+<entry key="maiWinOptFilBox2">String</entry>
+<entry key="maiWinOptFilSea">Filtre</entry>
 
 <entry key="cryPanFor">Formule:</entry>
 <entry key="cryPanNorTex">Le text original:</entry>

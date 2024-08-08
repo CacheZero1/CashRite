@@ -9,6 +9,8 @@
 <entry key="exc1">Minor exception</entry>
 <entry key="exc2">Major exception</entry>
 
+<entry key="maiWinMenSav">Save</entry>
+<entry key="maiWinMenExcRat">Exchange rates</entry>
 <entry key="maiWinMenExp">Export</entry>
 <entry key="maiWinMenImp">Import</entry>
 <entry key="maiWinMenAbo">About</entry>
@@ -16,7 +18,7 @@
 <entry key="maiWinMenShe">Sheet</entry>
 <entry key="maiWinMenSheNew">New sheet</entry>
 <entry key="maiWinMenSheDel">Delete sheet</entry>
-<entry key="maiWinMenSheRen">rename sheet</entry>
+<entry key="maiWinMenSheRen">Rename sheet</entry>
 <entry key="maiWinMenVie">View</entry>
 <entry key="maiWinMenVieDai">Daily</entry>
 <entry key="maiWinMenVieWee">Weekly</entry>
@@ -29,6 +31,16 @@
 <entry key="maiWinMenHel">Help</entry>
 <entry key="maiWinMenHelEnc">Encryption</entry>
 <entry key="maiWinMenHelUsa">Usage</entry>
+
+<entry key="maiWinOptEnt">Entry:</entry>
+<entry key="maiWinOptEntNew">New entry</entry>
+<entry key="maiWinOptEntDel">Delete entry</entry>
+<entry key="maiWinOptEntEdi">Edit entry</entry>
+<entry key="maiWinOptFil">Filter:</entry>
+<entry key="maiWinOptFilBox0">Date</entry>
+<entry key="maiWinOptFilBox1">Value</entry>
+<entry key="maiWinOptFilBox2">String</entry>
+<entry key="maiWinOptFilSea">Filter</entry>
 
 <entry key="cryPanFor">Formula:</entry>
 <entry key="cryPanNorTex">Original text:</entry>
